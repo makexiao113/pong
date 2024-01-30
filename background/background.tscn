@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=3 uid="uid://b6hnx1gktxeps"]
+
+[ext_resource type="Script" path="res://background/Player1Line.gd" id="1_3v7we"]
+[ext_resource type="PackedScene" uid="uid://baexqeauc1c3a" path="res://ball/ball.tscn" id="1_y6r5g"]
+[ext_resource type="Script" path="res://background/Player2Line.gd" id="2_1he17"]
+[ext_resource type="Script" path="res://background/TopLine.gd" id="4_gacm3"]
+[ext_resource type="Script" path="res://background/ButtomLine.gd" id="5_03kd2"]
+[ext_resource type="Script" path="res://background/Player1.gd" id="6_0bocq"]
+[ext_resource type="Script" path="res://background/Player1Score.gd" id="6_la672"]
+[ext_resource type="Script" path="res://background/Player2.gd" id="7_23mv8"]
+[ext_resource type="Script" path="res://background/Player2Score.gd" id="7_jqn6q"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_n456f"]
+b = Vector2(0, 648)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_cny0g"]
+a = Vector2(1152, 0)
+b = Vector2(1152, 648)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wbjn4"]
+b = Vector2(1152, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wp5bb"]
+a = Vector2(0, 648)
+b = Vector2(1152, 648)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_x41hv"]
+b = Vector2(0, 40)
+
+[node name="Background" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [44.0]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Player1Line" type="Area2D" parent="."]
+script = ExtResource("1_3v7we")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1Line"]
+shape = SubResource("SegmentShape2D_n456f")
+
+[node name="Player2Line" type="Area2D" parent="."]
+script = ExtResource("2_1he17")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2Line"]
+shape = SubResource("SegmentShape2D_cny0g")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(576, 0, 576, 648)
+width = 2.0
+
+[node name="ball" parent="." instance=ExtResource("1_y6r5g")]
+position = Vector2(576, 324)
+
+[node name="TopLine" type="Area2D" parent="."]
+script = ExtResource("4_gacm3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopLine"]
+shape = SubResource("SegmentShape2D_wbjn4")
+
+[node name="ButtomLine" type="Area2D" parent="."]
+script = ExtResource("5_03kd2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtomLine"]
+shape = SubResource("SegmentShape2D_wp5bb")
+
+[node name="Score2" type="Node2D" parent="."]
+
+[node name="Player1Score" type="Label" parent="Score2"]
+offset_left = 65.0
+offset_top = 20.0
+offset_right = 105.0
+offset_bottom = 43.0
+script = ExtResource("6_la672")
+
+[node name="Player2Score" type="Label" parent="Score2"]
+offset_left = 1057.0
+offset_top = 21.0
+offset_right = 1097.0
+offset_bottom = 44.0
+script = ExtResource("7_jqn6q")
+
+[node name="Player1" type="Area2D" parent="."]
+position = Vector2(20, 304)
+script = ExtResource("6_0bocq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
+shape = SubResource("SegmentShape2D_x41hv")
+
+[node name="Line2D" type="Line2D" parent="Player1"]
+points = PackedVector2Array(0, 0, 0, 40)
+
+[node name="Player2" type="Area2D" parent="."]
+position = Vector2(1132, 304)
+script = ExtResource("7_23mv8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+shape = SubResource("SegmentShape2D_x41hv")
+
+[node name="Line2D" type="Line2D" parent="Player2"]
+points = PackedVector2Array(0, 0, 0, 40)
